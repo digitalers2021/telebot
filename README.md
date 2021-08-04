@@ -53,7 +53,7 @@ Las siguientes son consignas para responder en [respuestas.txt](respuestas.txt):
 
 1. Que significa el `ON CONFLICT REPLACE` en la tabla `message` y que pasaria si no estuviera?
 
-2. Cuales serian las ventajas y desventajas de pasar `telegram.py` a un paradiga orientad o objectos?
+2. Cuales serian las ventajas y desventajas de pasar `telegram.py` a un paradigma orientado a objectos?
 
 3. Hay algo que pueda generalizarse en `models.py` ?
 
@@ -82,7 +82,9 @@ Lo que nos importa en la refactorizacion es tener un codigo "mas limpio" preserv
 
 Por que si el codigo funciona es necesario refactorizar? Porque ante la necesidad de agregar nueva funcionalidad, si internamente el codigo se encuentra desordenado haciendo dificil razonar sobre él, el costo de agregar nueva funcionalidad va a ser cada vez mas alto. 
 
-Por otro lado preservar las interfaces (APIs) permite la usubalidad de nuestro codigo, da previsibilidad a quienes tengan que trabajar con el, y nos permite ocultar la complejidad de ciertas operaciones en un interfaz limpia `requests.get("https://www.google.com")` **Trabajar en un proyecto de software tiene que ser comodo primero para quienes trabajan en dicho codigo.**
+Por otro lado preservar las interfaces (APIs) hace a la usabilidad de nuestro codigo, da previsibilidad a quienes tengan que trabajar con el, y nos permite ocultar la complejidad de ciertas operaciones en un interfaz limpia `requests.get("https://www.google.com")` 
+
+**Trabajar en un proyecto de software tiene que ser comodo primero para quienes trabajan en dicho codigo.**
 
 
 ## :memo: References
