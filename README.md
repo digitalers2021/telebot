@@ -3,15 +3,19 @@
 Este es el ejercicio nª 3 dentro del bootcamp del programa Digitalers
 
 Profesor: Xavier Petit
-Instituto: Telecom, Educacion IT
-Año: 2021
 
-Fecha de entrega: 30/08/2021 
-Forma de entrega:
+Instituto: Telecom, Educacion IT
+
+
+**Fecha de entrega: 30/08/2021**
+
+**Forma de entrega:**
+
 Un formulario en google forms con el link al repositorio forkeado,
 nombre del grupo y mail, por cada integrante. Llegada la fecha se pasara el link para la entraga.
 
-Forma de trabajo:
+**Forma de trabajo:**
+
 Un participante del grupo debe hacer un fork de este repositorio. 
 El equipo trabaja sobre el repositorio forkeado.
 
@@ -72,13 +76,13 @@ Las siguientes son consignas para responder en [respuestas.txt](respuestas.txt):
 
 Refactoring es una practica muy comun en el desarrollo de software y un topic bastante discutido en la industria. Tanto que tiene su [propio libro](https://martinfowler.com/books/refactoring.html). En ese libro una de las definiciones es:
 
-"Refactorear es una tecnica para reestructurar el cuerpo del codigo, alterando su estructura interna sin modificar su comportamiento exterior". 
+"Refactorear es una tecnica para reestructurar el cuerpo del codigo, alterando su estructura interna sin modificar su comportamiento exterior".  Martin Fowler.
 
 Lo que nos importa en la refactorizacion es tener un codigo "mas limpio" preservando las APIs. En este caso nuestras api seran: `get_updates`, `send_message` e `init`. 
 
 Por que si el codigo funciona es necesario refactorizar? Porque ante la necesidad de agregar nueva funcionalidad, si internamente el codigo se encuentra desordenado haciendo dificil razonar sobre él, el costo de agregar nueva funcionalidad va a ser cada vez mas alto. 
 
-Por otro lado preservar las interfaces (APIs) permite la usubalidad de nuestro codigo, da previsibilidad a quienes tengan que trabajar con el, y nos permite ocultar la complejidad de ciertas operaciones en un interfaz limpia `requests.get("https://www.google.com")` Trabajar en un proyecto tiene que ser comodo primero para que ellos que trabajan en dicho codigo. 
+Por otro lado preservar las interfaces (APIs) permite la usubalidad de nuestro codigo, da previsibilidad a quienes tengan que trabajar con el, y nos permite ocultar la complejidad de ciertas operaciones en un interfaz limpia `requests.get("https://www.google.com")` **Trabajar en un proyecto de software tiene que ser comodo primero para quienes trabajan en dicho codigo.**
 
 
 ## :memo: References
