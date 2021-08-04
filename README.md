@@ -68,9 +68,24 @@ Las siguientes son consignas para responder en [respuestas.txt](respuestas.txt):
 4. Cualquier problema es reversible. Si se tiene dudas con alguna operacion a realizarse en github, asegurarse que algun compañer@ tenga una copia saludable del repositorio. Pushear codigo a github. 
 
 
+(1) Refactoring:
+
+Refactoring es una practica muy comun en el desarrollo de software y un topic bastante discutido en la industria. Tanto que tiene su [propio libro](https://martinfowler.com/books/refactoring.html). En ese libro una de las definiciones es:
+
+"Refactorear es una tecnica para reestructurar el cuerpo del codigo, alterando su estructura interna sin modificar su comportamiento exterior". 
+
+Lo que nos importa en la refactorizacion es tener un codigo "mas limpio" preservando las APIs. En este caso nuestras api seran: `get_updates`, `send_message` e `init`. 
+
+Por que si el codigo funciona es necesario refactorizar? Porque ante la necesidad de agregar nueva funcionalidad, si internamente el codigo se encuentra desordenado haciendo dificil razonar sobre él, el costo de agregar nueva funcionalidad va a ser cada vez mas alto. 
+
+Por otro lado preservar las interfaces (APIs) permite la usubalidad de nuestro codigo, da previsibilidad a quienes tengan que trabajar con el, y nos permite ocultar la complejidad de ciertas operaciones en un interfaz limpia `requests.get("https://www.google.com")` Trabajar en un proyecto tiene que ser comodo primero para que ellos que trabajan en dicho codigo. 
+
+
 ## :memo: References
 
 - [Telegram docs](https://core.telegram.org/bots)
 - [Crear un entorno virtual en python](https://www.programaenpython.com/miscelanea/crear-entornos-virtuales-en-python/)
 - [Crear entorno virtual, doc oficial](https://docs.python.org/es/3/tutorial/venv.html)
 - [SQLite browser](https://sqlitebrowser.org/)
+- [Refactoring](https://martinfowler.com/books/refactoring.html)
+- [Refactoring book](https://refactoring.com/)
