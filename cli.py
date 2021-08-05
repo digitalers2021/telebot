@@ -11,7 +11,6 @@ token = options["TELEGRAM_TOKEN"]
 db_name = options.get("DBFILE", "telegram.db")
 db = SQL(db_name)
 
-db.setup_db([Update.table, Message.table])
 
 def get_updates():
     """ A wrapper que envuelve la funcionalidad
@@ -26,6 +25,30 @@ def get_updates():
         except sqlite3.IntegrityError:
             print("Update ya registrado")
 
-        # pprint(_upt) # debug
+        pprint(_upt) # debug
 
-get_updates()
+
+if __name__ == "__main__":
+    import sys
+
+    try:
+        action = sys.argv[1]
+    except IndexError:
+        print("Ingrese `init` `updates` o `send`")
+        sys.exit(1)
+
+    if action == "updates":
+        get_updates()
+    elif action == "send":
+        try:
+            chat_id = sys.argv[2]
+            text = sys.argv[3]
+        except IndexError:
+            print("ingrese `chat_id` y `text` para enviar")
+            sys.exit(1)
+
+        telegram.send_message(text, int(chat_id), token)
+    elif action == "init":
+        db.setup_db([Update.table, Message.table])
+    else:
+        print("Ingrese `init` `updates` o `send`")

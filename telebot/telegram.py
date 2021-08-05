@@ -18,6 +18,7 @@ def send_message(msg, chatid, token):
 
     BASE_URL = f"https://api.telegram.org/bot{token}"
     fullmsg = f"sendMessage?text={msg}&chat_id={chatid}"
+    # query params
     rsp = requests.get(f"{BASE_URL}/{fullmsg}")
     logging.debug("Message sent %s", rsp.text)
 
