@@ -87,7 +87,7 @@ def send_txt(data, tkn):
         data["chat"]["id"], tkn)
 
 def register_message(sql: SQL, data, tkn):
- """Tomamos la excepción del error Key error para mandar el mensaje de al usuario """
+ """Tomamos la excepción del error Key error para mandar el mensaje al usuario """
     try:
         register_db(sql, data)
         send_txt(data, tkn)
