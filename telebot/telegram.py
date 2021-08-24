@@ -69,29 +69,15 @@ def get_updates(token):
 
     return rsp.json()["result"]
 
-
-def register_message(sql: SQL, data, tkn):
-    """
-    Recibe un mensaje, lo guarda en la base y envia 
-    un response.
-    {'chat': {'first_name': 'Xavier',
-                      'id': 44444,
-                      'last_name': 'Petit',
-                      'type': 'private',
-                      'username': 'xpetit'
-             },
-     'date': 1628087051,
-     'from': {'first_name': 'Xavier',
-                      'id': 4444,
-                      'is_bot': False,
-                      'language_code': 'en',
-                      'last_name': 'Petit',
-                      'username': 'xpetit'},
-     'message_id': 15,
-     'text': 'dame info'}
-    """
+def register_db(sql:SQL, data):
     msg = Message(sql)
     msg.add(data["chat"]["id"], data["message_id"], data["text"])
+
+def send_txt(data, tkn):
     send_message(
         f"👋 Hola {data['chat']['first_name']}! en que te puedo ayudar?",
         data["chat"]["id"], tkn)
+
+def register_message(sql: SQL, data, tkn):
+    register_db(sql, data)
+    send_txt(data, tkn)
