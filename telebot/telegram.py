@@ -69,6 +69,14 @@ def get_updates(token):
 
     return rsp.json()["result"]
 
+"""
+    Para refactorizar la función register_message creamos dos nuevas funciones:
+        register_db --> se encarga de guardar el mensaje en la base de datos
+        send_txt  --> envía el mensaje de bienvenida
+
+"""
+
+
 def register_db(sql:SQL, data):
     msg = Message(sql)
     msg.add(data["chat"]["id"], data["message_id"], data["text"])
