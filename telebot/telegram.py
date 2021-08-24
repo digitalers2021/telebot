@@ -75,7 +75,7 @@ def register_db(sql:SQL, data):
 
 def send_txt(data, tkn):
     send_message(
-        f"👋 Hola {data['chat']['first_name']}! en que te puedo ayudar?",
+        f"👋 Hola amigo {data['chat']['first_name']}! en que te puedo ayudar?",
         data["chat"]["id"], tkn)
 
 def register_message(sql: SQL, data, tkn):
