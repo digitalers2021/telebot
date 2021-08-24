@@ -65,7 +65,7 @@ def get_updates(token):
     BASE_URL = f"https://api.telegram.org/bot{token}"
     rsp = requests.get(f"{BASE_URL}/getUpdates")
 
-    # pprint(rsp.json()["result"]) # debug
+    #pprint(rsp.json()["result"]) # debug
 
     return rsp.json()["result"]
 
@@ -87,5 +87,10 @@ def send_txt(data, tkn):
         data["chat"]["id"], tkn)
 
 def register_message(sql: SQL, data, tkn):
-    register_db(sql, data)
-    send_txt(data, tkn)
+
+    try:
+        register_db(sql, data)
+        send_txt(data, tkn)
+    except KeyError:
+        send_message("No se admiten imagenes, tratá mandando un texto", data["chat"]["id"], tkn)
+    
