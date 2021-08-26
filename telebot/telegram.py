@@ -38,7 +38,7 @@ def get_chat_id(username, token):
             return
 
 
-def get_updates(token):
+def get_updates(token, offset=None):
     """ Obtiene todos los mensajes desde telegram
     API information: https://core.telegram.org/bots/api#getupdates
     Ejemplo de rsp.json()["result"]:
@@ -63,7 +63,7 @@ def get_updates(token):
     ]
     """
     BASE_URL = f"https://api.telegram.org/bot{token}"
-    rsp = requests.get(f"{BASE_URL}/getUpdates")
+    rsp = requests.get(f"{BASE_URL}/getUpdates", params={'offset': offset+1})
 
     #pprint(rsp.json()["result"]) # debug
 
