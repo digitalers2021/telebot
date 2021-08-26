@@ -38,7 +38,7 @@ def get_chat_id(username, token):
             return
 
 
-def get_updates(token):
+def get_updates(token, offset=None):
     """ Obtiene todos los mensajes desde telegram
     API information: https://core.telegram.org/bots/api#getupdates
     Ejemplo de rsp.json()["result"]:
@@ -62,36 +62,37 @@ def get_updates(token):
     ...
     ]
     """
+    """agregado parametro de 'offset+1', updates ahora devuelve los mensajes sin ver
+    """
     BASE_URL = f"https://api.telegram.org/bot{token}"
-    rsp = requests.get(f"{BASE_URL}/getUpdates")
+    rsp = requests.get(f"{BASE_URL}/getUpdates", params={'offset': offset+1})
 
-    # pprint(rsp.json()["result"]) # debug
+    #pprint(rsp.json()["result"]) # debug
 
     return rsp.json()["result"]
 
+def register_db(sql:SQL, data):
+    msg = Message(sql)
+    msg.add(data["chat"]["id"], data["message_id"], data["text"])
+
+def send_txt(data, tkn):
+    send_message(
+        f"👋 Hola amigo {data['chat']['first_name']}! en que te puedo ayudar?",
+        data["chat"]["id"], tkn)
 
 def register_message(sql: SQL, data, tkn):
     """
-    Recibe un mensaje, lo guarda en la base y envia 
-    un response.
-    {'chat': {'first_name': 'Xavier',
-                      'id': 44444,
-                      'last_name': 'Petit',
-                      'type': 'private',
-                      'username': 'xpetit'
-             },
-     'date': 1628087051,
-     'from': {'first_name': 'Xavier',
-                      'id': 4444,
-                      'is_bot': False,
-                      'language_code': 'en',
-                      'last_name': 'Petit',
-                      'username': 'xpetit'},
-     'message_id': 15,
-     'text': 'dame info'}
+        Para refactorizar la función register_message creamos dos nuevas funciones:
+            register_db --> se encarga de guardar el mensaje en la base de datos
+            send_txt  --> envía el mensaje de bienvenida
     """
-    msg = Message(sql)
-    msg.add(data["chat"]["id"], data["message_id"], data["text"])
-    send_message(
-        f"👋 Hola {data['chat']['first_name']}! en que te puedo ayudar?",
-        data["chat"]["id"], tkn)
+    """
+        Tomamos la excepción del error Key error para mandar el mensaje al usuario
+    """
+    
+    try:
+        register_db(sql, data)
+        send_txt(data, tkn)
+    except KeyError:
+        send_message("No se admiten imagenes, tratá mandando un texto", data["chat"]["id"], tkn)
+    

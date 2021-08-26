@@ -17,7 +17,10 @@ def get_updates():
     """ A wrapper que envuelve la funcionalidad
     de obtener updates desde telegram
     """
-    updates = telegram.get_updates(token)
+    """Agregada variable de offset y pasada por parametro en update
+    """
+    offset = db.one('SELECT update_id FROM tlg_update order by update_id desc')
+    updates = telegram.get_updates(token, *offset)
     for _upt in updates:
         update = Update(db)
         try:
