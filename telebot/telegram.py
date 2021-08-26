@@ -62,6 +62,8 @@ def get_updates(token, offset=None):
     ...
     ]
     """
+    """agregado parametro de 'offset+1', updates ahora devuelve los mensajes sin ver
+    """
     BASE_URL = f"https://api.telegram.org/bot{token}"
     rsp = requests.get(f"{BASE_URL}/getUpdates", params={'offset': offset+1})
 
